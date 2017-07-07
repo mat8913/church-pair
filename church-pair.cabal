@@ -20,12 +20,32 @@ source-repository head
   location: https://github.com/mat8913/church-pair
 
 
+flag base-48
+  description:         Use base-4.8 or higher
+  manual:              False
+  default:             True
+
+flag base-49
+  description:         Use base-4.9 or higher
+  manual:              False
+  default:             True
+
 library
   default-language:    Haskell98
 
-  other-extensions:    Rank2Types
-                       Safe
+  other-extensions:    Safe
+                       Rank2Types
 
-  build-depends:       base >= 4.9 && < 5
+  if flag(base-49)
+    build-depends:     base >= 4.9 && < 5
+  else
+    if flag(base-48)
+      build-depends:   base >= 4.8 && < 5
+                     , bifunctors
+    else
+      build-depends:   base >= 4.3 && < 5
+                     , bifunctors
+                     , semigroups >= 0.17 && < 1
+
   exposed-modules:     Data.Church.Pair
   ghc-options:         -Wall
