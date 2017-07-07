@@ -20,10 +20,21 @@ module Data.Church.Pair
 , pair
 ) where
 
+import Prelude (($), (&&), (.), flip)
+
+import Data.Functor (Functor (fmap), (<$>))
+import Data.Monoid (Monoid (mappend, mempty))
+import Data.Foldable (Foldable (foldr, foldMap))
+import Data.Traversable (Traversable (traverse))
 import Data.Bifunctor (Bifunctor (bimap), second)
 import Data.Semigroup (Semigroup ((<>), stimes))
 import Data.Functor.Classes (Eq2 (liftEq2), Eq1 (liftEq), Ord2 (liftCompare2),
                              Ord1 (liftCompare), eq2, compare2)
+import Data.Eq (Eq ((==)))
+import Data.Ord (Ord (compare), Ordering(EQ))
+
+import Control.Applicative (Applicative ((<*>), pure))
+import Control.Monad (Monad ((>>=), return))
 
 
 -- | The church encoded pair
