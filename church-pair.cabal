@@ -41,10 +41,12 @@ library
   else
     if flag(base-48)
       build-depends:   base >= 4.8 && < 4.9
-                     , bifunctors
+                     , bifunctors < 6
+                     , transformers >= 0.5 && < 1
     else
       build-depends:   base >= 4.5 && < 4.8
-                     , bifunctors
+                     , bifunctors < 6
+                     , transformers >= 0.5 && < 1
                      , semigroups >= 0.17 && < 1
 
   exposed-modules:     Data.Church.Pair
